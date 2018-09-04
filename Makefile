@@ -17,8 +17,8 @@ pkgs   = $(shell $(GO) list ./... | grep -v /vendor/)
 
 PREFIX                  ?= $(shell pwd)
 BIN_DIR                 ?= $(shell pwd)
-DOCKER_IMAGE_NAME       ?= event-exporter
-DOCKER_IMAGE_TAG        ?= $(subst /,-,$(shell git rev-parse --abbrev-ref HEAD))
+DOCKER_IMAGE_NAME       ?= docker.artifactory.braintribe.com/event-exporter
+DOCKER_IMAGE_TAG        ?= latest
 
 ifdef DEBUG
 	bindata_flags = -debug
@@ -45,7 +45,7 @@ vet:
 
 build: promu
 	@echo ">> building binaries"
-	@$(PROMU) build --prefix $(PREFIX)
+	@$(PROMU) crossbuild -p linux/amd64
 
 tarball: promu
 	@echo ">> building release tarball"

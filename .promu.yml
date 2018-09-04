@@ -1,5 +1,5 @@
 repository:
-    path: github.com/caicloud/event_exporter
+    path: github.com/braintribehq/event_exporter
 build:
     flags: -a -tags netgo
     ldflags: |
